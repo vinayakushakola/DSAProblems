@@ -8,11 +8,9 @@ namespace Arrays
         static void Main(string[] args)
         {
             #region Input 
-            int num = 153;
-            if (BasicArrayProblems.ArmstrongNumber(num))
-                Console.WriteLine(num + " is an Armstrong No");
-            else
-                Console.WriteLine(num + " is a not an Armstrong No");
+            int[] arr = { 0, 2, 9 };
+            int res = BasicArrayProblems.MinimumPicks(arr);
+            Console.WriteLine("Ouput: " + res);
             #endregion        
         }
     }

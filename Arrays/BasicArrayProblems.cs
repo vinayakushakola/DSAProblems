@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Arrays
 {
     public class BasicArrayProblems
     {
+        #region Number Probelms
         // To check a number is prime number or not
         // A number is said to be a prime number if it is divisible by 1 & itself
         public static bool IsPrimeNumber(int N)
@@ -157,5 +159,232 @@ namespace Arrays
             return sum == temp;
             #endregion
         }
+
+        #endregion
+
+        // Reverse an Array
+        public static void ReverseArray(int[] arr)
+        {
+            #region Input 
+            //int[] arr = { 1, 2, 3, 4, 5 };
+            //Console.WriteLine(" Before");
+            //foreach (int ele in arr)
+            //{
+            //    Console.Write(" " + ele);
+            //}
+            //Console.WriteLine();
+            //BasicArrayProblems.ReverseArray(arr);
+            //Console.WriteLine(" After");
+            //foreach (int ele in arr)
+            //{
+            //    Console.Write(" " + ele);
+            //}
+            #endregion
+            // TC - O(N/2) | SC - O(1)
+            int i = 0, j = arr.Length-1;
+            while (i < j)
+            {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;j--;
+            }
+        }
+
+        // Reverse an Array
+        public static void ReverseArray(int[] arr, int i, int j)
+        {
+            #region Input 
+            //int[] arr = { 1, 2, 3, 4, 5 };
+            //Console.WriteLine(" Before");
+            //foreach (int ele in arr)
+            //{
+            //    Console.Write(" " + ele);
+            //}
+            //Console.WriteLine();
+            //BasicArrayProblems.ReverseArray(arr, 0, arr.Length - 1);
+            //Console.WriteLine(" After");
+            //foreach (int ele in arr)
+            //{
+            //    Console.Write(" " + ele);
+            //}
+            #endregion 
+            // TC - O(N/2) | SC - O(1)
+            while (i < j)
+            {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;j--;
+            }
+        }
+
+        // Rotate an Array by k rotation from right side which is in clockwise direction
+        public static void RotateAnArrayByk(int[] arr, int k)
+        {
+            #region Input 
+            //int[] arr = { 1, 2, 3, 4, 5 };
+            //Console.WriteLine(" Before");
+            //foreach (int ele in arr)
+            //{
+            //    Console.Write(" " + ele);
+            //}
+            //Console.WriteLine();
+            //BasicArrayProblems.RotateAnArrayByk(arr, 2);
+            //Console.WriteLine(" After");
+            //foreach (int ele in arr)
+            //{
+            //    Console.Write(" " + ele);
+            //}
+            #endregion
+            int size = arr.Length - 1;
+            k = k % size;
+            ReverseArray(arr);
+            ReverseArray(arr, 0, k - 1);
+            ReverseArray(arr, k, size);
+        }
+
+        // Rotate an Array by k rotation from left side which is in anti-clockwise direction
+        public static void RotateAnArrayByk(int k, int[] arr)
+        {
+            #region Input 
+            //int[] arr = { 1, 2, 3, 4, 5 };
+            //Console.WriteLine(" Before");
+            //foreach (int ele in arr)
+            //{
+            //    Console.Write(" " + ele);
+            //}
+            //Console.WriteLine();
+            //BasicArrayProblems.RotateAnArrayByk(2, arr);
+            //Console.WriteLine(" After");
+            //foreach (int ele in arr)
+            //{
+            //    Console.Write(" " + ele);
+            //}
+            #endregion
+            // 1 2 3 4 5
+            // 5 4 3 2 1 
+            // 3 4 5 1 2
+            int size = arr.Length - 1;
+            k = k % size;
+            ReverseArray(arr);
+            ReverseArray(arr, 0, size - k);
+            ReverseArray(arr, size - k + 1, size);
+        }
+
+        // Good Pair
+        // A[i] + A[j] == B return true
+        public static bool IsGoodPair(int[] arr, int B)
+        {
+            int size = arr.Length;
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = i+1; j<size; j++)
+                {
+                    if (arr[i] + arr[j] == B)
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        // Max and Min of an Array
+        public static int[] MaxMin(int[] arr)
+        {
+            #region Input 
+            //int[] arr = { 1, 2, 3, 4, 5, 6 };
+            //Console.WriteLine(" Before");
+            //foreach (int ele in arr)
+            //{
+            //    Console.Write(" " + ele);
+            //}
+            //Console.WriteLine();
+            //int[] res = BasicArrayProblems.MaxMin(arr);
+            //Console.WriteLine(" After");
+            //foreach (int ele in res)
+            //{
+            //    Console.Write(" " + ele);
+            //}
+            #endregion 
+            // TC - O(N) | SC - O(1)
+            int size = arr.Length;
+            int min_Ele = arr[0];
+            int max_Ele = arr[0];
+            for (int i = 1; i<size; i++)
+            {
+                if (min_Ele > arr[i])
+                    min_Ele = arr[i];
+                else if (max_Ele < arr[i])
+                    max_Ele = arr[i];
+            }
+            return new int[2]{ min_Ele, max_Ele};
+        }
+
+        // Search Element in an Array
+        public static bool SearchElement(int[] arr, int searchEle)
+        {
+            #region Input 
+            //int[] arr = { 1, 2, 3, 4, 5, 6 };
+            //int searhEle = 19;
+            //if (BasicArrayProblems.SearchElement(arr, searhEle))
+            //    Console.Write(searhEle + " is found in the array");
+            //else
+            //    Console.Write(searhEle + " is not found in the array");
+            #endregion  
+
+            int size = arr.Length;
+            for (int i = 0; i<size; i++)
+            {
+                if (arr[i] == searchEle) return true;
+            }
+            return false;
+        }
+
+        // Second Largest element in an Array
+        public static int SecondLargestElement(int[] arr)
+        {
+            #region Input 
+            //int[] arr = { 1, 2, 3, 4, 5, 6 };
+            //int res = BasicArrayProblems.SecondLargestElement(arr);
+            //Console.WriteLine(res + " is the second largest element in the array");
+            #endregion  
+            int size = arr.Length;
+            int max_Ele = arr[0];
+            int sec_Max_Ele = int.MinValue;
+            for (int i = 1; i<size; i++)
+            {
+                if (max_Ele < arr[i])
+                {
+                    sec_Max_Ele = max_Ele;
+                    max_Ele = arr[i];
+                }
+                else if (sec_Max_Ele < arr[i])
+                    sec_Max_Ele = arr[i];
+            }
+            return sec_Max_Ele;
+        }
+
+        // MINIMUM PICKS
+        // Return Max of Even Element - Min of Odd Elemnt
+        public static int MinimumPicks(int[] arr)
+        {
+            #region Input 
+            //int[] arr = { 0, 2, 9 };
+            //int res = BasicArrayProblems.MinimumPicks(arr);
+            //Console.WriteLine("Ouput: " + res);
+            #endregion 
+            int size = arr.Length;
+            int max_Even = int.MinValue, min_Odd = int.MaxValue;
+            for (int i =0; i<size; i++)
+            {
+                if (arr[i] % 2 == 0 && max_Even < arr[i])
+                    max_Even = arr[i];
+                else if (arr[i] % 2 != 0 && min_Odd > arr[i])
+                    min_Odd = arr[i];
+            }
+            return max_Even - min_Odd;
+        }
+
+
     }
 }
