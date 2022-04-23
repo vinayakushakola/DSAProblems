@@ -384,7 +384,5 @@ namespace Arrays
             }
             return max_Even - min_Odd;
         }
-
-
     }
 }

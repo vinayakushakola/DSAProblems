@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace Arrays
 {
@@ -8,9 +8,8 @@ namespace Arrays
         static void Main(string[] args)
         {
             #region Input 
-            int[] arr = { 0, 2, 9 };
-            int res = BasicArrayProblems.MinimumPicks(arr);
-            Console.WriteLine("Ouput: " + res);
+            List<int> arr = new List<int>{ 1,2,3,4,5 };
+            var res = PrefixArrayProblems.ProductArray(arr);
             #endregion        
         }
     }
