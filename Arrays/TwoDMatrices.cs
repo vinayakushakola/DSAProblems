@@ -107,5 +107,96 @@ namespace Arrays
                 Console.WriteLine();
             }
         }
+
+        // Given a square matrix perfrom of transpose of matrix
+        public static void TransposeMatrix(List<List<int>> mat)
+        {
+            #region Input 
+            //List<int> A = new List<int> { 1, 2, 3 };
+            //List<int> B = new List<int> { 4, 5, 6 };
+            //List<int> C = new List<int> { 7, 8, 9 };
+            //List<List<int>> mat = new List<List<int>>();
+            //mat.Add(A);
+            //mat.Add(B);
+            //mat.Add(C);
+            //Console.WriteLine("Before");
+            //foreach (var it in mat)
+            //{
+            //    foreach (int ele in it)
+            //    {
+            //        Console.Write(ele + " ");
+            //    }
+            //    Console.WriteLine();
+            //}
+            //TwoDMatrices.TransposeMatrix(mat);
+            //Console.WriteLine("After");
+            //foreach (var it in mat)
+            //{
+            //    foreach (int ele in it)
+            //    {
+            //        Console.Write(ele + " ");
+            //    }
+            //    Console.WriteLine();
+            //}
+            #endregion 
+            int size = mat.Count;
+            for (int i = 0; i<size; i++)
+            {
+                for (int j = 0; j <= i; j++)
+                {
+                    int temp = mat[i][j];
+                    mat[i][j] = mat[j][i];
+                    mat[j][i] = temp;
+                }
+            }
+        }
+
+        // Given a square matrix rotate matrix by 90 deg
+        public static void RotateMatrixBy90Deg(List<List<int>> mat)
+        {
+            TransposeMatrix(mat);
+            foreach (List<int> lst in mat)
+            {
+                BasicArrayProblems.ReverseArray(lst);
+            }
+        }
+
+        // Given a square matrix print in a spiral form
+        public static void PrintSpiralMatrix(List<List<int>> mat)
+        {
+            int size = mat.Count;
+            int i = 0, j = 0;
+            while (size > 1)
+            {
+                for (int x = 1; x < size; x++)
+                {
+                    Console.Write(mat[i][j]+" ");
+                    j++;
+                }
+                Console.WriteLine();
+                for (int x = 1; x < size; x++)
+                {
+                    Console.Write(mat[i][j] + " ");
+                    i++;
+                }
+                Console.WriteLine();
+                for (int x = 1; x < size; x++)
+                {
+                    Console.Write(mat[i][j] + " ");
+                    j--;
+                }
+                Console.WriteLine();
+                for (int x = 1; x < size; x++)
+                {
+                    Console.Write(mat[i][j] + " ");
+                    i--;
+                }
+                Console.WriteLine();
+                size = size - 2;
+                i++;j++;
+            }
+            if (size == 1)
+                Console.WriteLine(mat[i][j]);
+        }
     }
 }

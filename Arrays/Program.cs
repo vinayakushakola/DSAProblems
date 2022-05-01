@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Arrays
 {
@@ -14,14 +15,25 @@ namespace Arrays
         static void Main(string[] args)
         {
             #region Input 
-            List<int> A = new List<int>{ 1, 2, 3, 9};
-            List<int> B = new List<int>{ 4, 5, 6, 9};
-            List<int> C = new List<int>{ 7, 8, 9, 10};
+            List<int> A = new List<int>{ 1, 2, 3, 22};
+            List<int> B = new List<int>{ 4, 5, 6, 42};
+            List<int> C = new List<int>{ 7, 8, 9, 34};
+            List<int> D = new List<int>{ 12, 44, 31, 54};
             List<List<int>> mat = new List<List<int>>();
             mat.Add(A);
             mat.Add(B);
             mat.Add(C);
-            TwoDMatrices.PrintDiagonalsFromRToL(mat);
+            mat.Add(D);
+            Console.WriteLine("Before");
+            foreach (var it in mat)
+            {
+                foreach (int ele in it)
+                {
+                    Console.Write(ele + " ");
+                }
+                Console.WriteLine();
+            }
+            TwoDMatrices.PrintSpiralMatrix(mat);
             #endregion        
         }
     }

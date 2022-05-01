@@ -191,6 +191,20 @@ namespace Arrays
             }
         }
 
+        public static void ReverseArray(List<int> lst)
+        {
+            // TC - O(N/2) | SC - O(1)
+            int i = 0, j = lst.Count - 1;
+            while (i < j)
+            {
+                int temp = lst[i];
+                lst[i] = lst[j];
+                lst[j] = temp;
+                i++; j--;
+            }
+        }
+
+
         // Reverse an Array
         public static void ReverseArray(int[] arr, int i, int j)
         {
