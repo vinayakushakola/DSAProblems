@@ -27,19 +27,31 @@ namespace Arrays
         // Print Max Subarray Sum
         public static void MaxSubarraySum(int[] A)
         {
-            // Carry Forward Technique TC - O(N^2) | SC - O(1)
+            #region Approach 1 Carry Forward Technique TC - O(N^2) | SC - O(1)
+            //int size = A.Length;
+            //int max_sum = int.MinValue;
+            //for (int i = 0; i<size; i++)
+            //{
+            //    int sum = 0;
+            //    for (int j=i; j<size; j++)
+            //    {
+            //        sum += A[j];
+            //        max_sum = Math.Max(max_sum, sum);
+            //    }
+            //}
+            //Console.WriteLine("Max Subarray Sum = " + max_sum);
+            #endregion
+            #region Optimized Approach - Kadane's Algo Optimized TC - O(N) | SC(1)
+            int curr_sum = 0, ans = int.MinValue;
             int size = A.Length;
-            int max_sum = int.MinValue;
             for (int i = 0; i<size; i++)
             {
-                int sum = 0;
-                for (int j=i; j<size; j++)
-                {
-                    sum += A[j];
-                    max_sum = Math.Max(max_sum, sum);
-                }
+                curr_sum += A[i];
+                ans = Math.Max(ans, curr_sum);
+                if (curr_sum < 0) curr_sum = 0;
             }
-            Console.WriteLine("Max Subarray Sum = " + max_sum);
+            Console.WriteLine("Max Sum = {0}", ans);
+            #endregion
         }
 
         // Print Max Subaaray Sum with Length K
