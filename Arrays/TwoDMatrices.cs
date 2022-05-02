@@ -19,7 +19,7 @@ namespace Arrays
             #endregion
             int row = mat.Count;
             int col = mat[0].Count;
-            for (int i = 0; i<row; i++)
+            for (int i = 0; i < row; i++)
             {
                 int row_sum = 0;
                 for (int j = 0; j < col; j++)
@@ -74,10 +74,10 @@ namespace Arrays
             int x = 0, y = N - 1;
             Console.WriteLine("2nd Diagonal");
 
-            while (x<N && y >= 0)
+            while (x < N && y >= 0)
             {
                 Console.WriteLine(mat[x][y]);
-                x++;y--;
+                x++; y--;
             }
         }
 
@@ -89,20 +89,20 @@ namespace Arrays
             for (int i = 0; i < col; i++)
             {
                 int x = 0, y = i;
-                while (x<row && y >= 0)
+                while (x < row && y >= 0)
                 {
                     Console.Write(mat[x][y]);
-                    x++;y--;
+                    x++; y--;
                 }
                 Console.WriteLine();
             }
-            for (int i = 1; i<row; i++)
+            for (int i = 1; i < row; i++)
             {
                 int x = i, y = col - 1;
-                while (x<row && y >= 0)
+                while (x < row && y >= 0)
                 {
                     Console.Write(mat[x][y]);
-                    x++;y--;
+                    x++; y--;
                 }
                 Console.WriteLine();
             }
@@ -140,7 +140,7 @@ namespace Arrays
             //}
             #endregion 
             int size = mat.Count;
-            for (int i = 0; i<size; i++)
+            for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j <= i; j++)
                 {
@@ -170,7 +170,7 @@ namespace Arrays
             {
                 for (int x = 1; x < size; x++)
                 {
-                    Console.Write(mat[i][j]+" ");
+                    Console.Write(mat[i][j] + " ");
                     j++;
                 }
                 Console.WriteLine();
@@ -193,10 +193,44 @@ namespace Arrays
                 }
                 Console.WriteLine();
                 size = size - 2;
-                i++;j++;
+                i++; j++;
             }
             if (size == 1)
                 Console.WriteLine(mat[i][j]);
+        }
+
+        // ====================== Advanced Problems ==================
+        // Beggars Outside Temple
+        public static List<int> BeggarsPotCount(int A, List<List<int>> B)
+        {
+            #region Input 
+            //int A = 5;
+            //List<List<int>> mat = new List<List<int>>()
+            //{
+            //    new List<int>() { 1, 2, 10 },
+            //    new List<int>() { 2, 3, 20 },
+            //    new List<int>() { 2, 5, 25 }
+            //};
+            //List<int> output = TwoDMatrices.BeggarsPotCount(A, mat);
+            //foreach (int ele in output)
+            //    Console.Write(ele + " ");
+            #endregion        
+
+            int[] beggarsPot = new int[A];
+            int size = B.Count;
+
+            for (int i = 0; i < size; i++)
+            {
+                int start = B[i][0] - 1;
+                int end = B[i][1];
+                int money = B[i][2];
+
+                beggarsPot[start] += money;
+                if (end < A)
+                    beggarsPot[end] += (-1 * money);
+            }
+            List<int> pfLst = PrefixArrayProblems.GetPrefixLst(beggarsPot, A);
+            return pfLst;
         }
     }
 }

@@ -220,6 +220,24 @@ namespace Arrays
             return pfArr;
         }
 
+        public static List<int> GetPrefixLst(List<int> lst, int size)
+        {
+            List<int> pfLst = new List<int>();
+            pfLst.Add(lst[0]);
+            for (int i = 1; i < size; i++)
+                pfLst[i] = pfLst[i - 1] + lst[i];
+            return pfLst;
+        }
+
+        public static List<int> GetPrefixLst(int[] arr, int size)
+        {
+            List<int> pfLst = new List<int>();
+            pfLst.Add(arr[0]);
+            for (int i = 1; i < size; i++)
+                pfLst.Add(pfLst[i - 1] + arr[i]);
+            return pfLst;
+        }
+
         public static int[] GetPrefixArray(List<int> arr, int size)
         {
             int[] pfArr = new int[size];
