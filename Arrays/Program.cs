@@ -16,17 +16,8 @@ namespace Arrays
         static void Main(string[] args)
         {
             #region Input 
-            int A = 5;
-            List<List<int>> mat = new List<List<int>>()
-            {
-                new List<int>() { 1, 2, 10 },
-                new List<int>() { 2, 3, 20 },
-                new List<int>() { 2, 5, 25 }
-            };
-            List<int> output = TwoDMatrices.BeggarsPotCount(A, mat);
-            foreach(int ele in output)
-                Console.Write(ele + " ");
-            #endregion        
+            int op = AdvanceArrayProblems.MaxMod(new List<int> { 927, 707, 374, 394, 279, 799, 878, 937, 431, 112 });
+            #endregion
         }
     }
 }
