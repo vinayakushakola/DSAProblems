@@ -76,6 +76,65 @@
             #endregion
         }
 
+        public static Node ReverseLinkedList(Node head)
+        {
+            if (head == null || head.next == null) return head;
+
+            Node prev = null, curr = head;
+            while (curr != null)
+            {
+                Node nxt = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = nxt;
+            }
+            head = prev;
+            return head;
+        }
+
+        public Node ReverseList(Node head, int k)
+        {
+            if (k == 0 || k == 1) return head;
+            Node prev = null;
+            Node curr = head;
+            Node oldTail = head;
+            Node mainHead = null;
+            Node oldTailNext = null;
+            int operation = 0;
+            while (curr != null)
+            {
+                ++operation;
+                Node next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+                if (operation % k == 0)
+                {
+                    if (mainHead == null)
+                    {
+                        mainHead = prev;
+                        oldTailNext = curr;
+                    }
+                    else
+                    {
+                        oldTail.next = prev;
+                        oldTail = oldTailNext;
+                        oldTailNext = curr;
+
+                    }
+                    prev = curr;
+                    if (curr == null)
+                    {
+                        oldTail.next = null;
+                        break;
+                    }
+                    curr = curr.next;
+                    operation = 1;
+                }
+            }
+            return mainHead;
+        }
+
         public static int Size(Node head) 
         {
             // TC - O(N) | SC - O(1)
