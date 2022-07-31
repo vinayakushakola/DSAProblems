@@ -6,13 +6,13 @@
         {
             Console.WriteLine("=================== Searching ===================");
             #region Input
-            int[,] mat = {  { 2, 4, 7, 10 },
-                            { 12, 24, 37, 39 },
-                            { 42, 44, 47, 49 },
-                            { 52, 74, 87, 99 }  
-                         };
+            int[] R1 = { 2, 4, 7, 10 };
+            int[] R2 = { 12, 24, 27, 30 };
+            int[] R3 = { 35, 38, 44, 49 };
+            int[] R4 = { 52, 54, 67, 90 };
+            int[][] mat = { R1, R2, R3, R4 };
             int k = 44;
-            Console.WriteLine("Search of {0} at index {1}", k, SearchingProblems.SearchOfK(mat, k));
+            Console.WriteLine("Is {0} present ? \nAns: {1}", k, SearchingProblems.SearchOfK(mat, k) == 1 ? "Yes":"No");
             #endregion
         }
     }

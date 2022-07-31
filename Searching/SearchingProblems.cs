@@ -174,12 +174,25 @@
             return upper - lower;
         }
 
-        // Q7. Sorted Matrix Search for K (Incomplete)
-        public static int SearchOfK(int[,] mat, int k)
+        // Q7. Sorted Matrix Search for K 
+        public static int SearchOfK(int[][] mat, int k)
         {
-            int size = (int)Math.Sqrt(mat.Length);
+            #region Input
+            /*
+            int[] R1 = { 2, 4, 7, 10 };
+            int[] R2 = { 12, 24, 27, 30 };
+            int[] R3 = { 35, 38, 44, 49 };
+            int[] R4 = { 52, 54, 67, 90 };
+            int[][] mat = { R1, R2, R3, R4 };
+            int k = 44;
+            Console.WriteLine("Is {0} present ? \nAns: {1}", k, SearchingProblems.SearchOfK(mat, k) == 1 ? "Yes" : "No");
+            */
+            #endregion
             #region Approach 1
             /*
+            int row = mat.Length;
+            int col = mat[0].Length - 1;
+            int size = row * col;
             int[] flattenArr = new int[size];
             size = (int)Math.Sqrt(size);
             int idx = 0;
@@ -194,22 +207,19 @@
             return Searching.BinarySearch(flattenArr, k);
             */
             #endregion
-            int col = size - 1;
-            int[] arr = new int[size];
-            for (int i=0; i<size; i++)
-            {
-                arr[i] = mat[i, col];
-            }
-            int lower = LowerBound(arr, k);
-            
-            for (int i = 0; i<size; i++)
-            {
-                //if (mat[i,j] == lower)
-                //{
 
-                //}
+            int row = 0;
+            int col = mat[0].Length - 1;
+            while (row < mat.Length && col >= 0)
+            {
+                if (mat[row][col] == k)
+                    return 1;
+                else if (mat[row][col] > k)
+                    col--;
+                else if (mat[row][col] < k)
+                    row++;
             }
-            return -1;
+            return 0;
         }
 
         // Q8. Find the peak element. An array element is peak if it is NOT smaller than its neighbors
