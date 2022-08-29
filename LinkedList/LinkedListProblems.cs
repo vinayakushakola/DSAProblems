@@ -5,64 +5,72 @@
         public static Node DeleteMiddleNode(Node head)
         {
             #region Input
-            //Node output = LinkedListProblems.DeleteMiddleNode(NodeHandler.GetEvenNoOfNodes());
-            //Node output2 = LinkedListProblems.DeleteMiddleNode(NodeHandler.GetOddNoOfNodes());
+            //Node output = LinkedListProblems.DeleteMiddleNode(null); // zero nodes
+            //Node output1 = LinkedListProblems.DeleteMiddleNode(new Node(1)); // only 1 Node
+            //Node output2 = LinkedListProblems.DeleteMiddleNode(NodeHandler.GetTwoNodes()); // 2 Nodes
+            //Node output3 = LinkedListProblems.DeleteMiddleNode(NodeHandler.GetEvenNoOfNodes());
+            //Node output4 = LinkedListProblems.DeleteMiddleNode(NodeHandler.GetOddNoOfNodes());
             #endregion
-
             if (head == null || head.next == null)
             {
                 head = null;
                 return head;
             }
-            int size = Size(head); // O(N)
-            Node currNode = head;
-            //for (int i = 0; i < size/2; i++) // O(N/2) == O(N)
-            //{
-            //    if (i == size/2 - 1)
-            //    {
-            //        currNode.next = currNode.next.next;
-            //        break;
-            //    }
-            //    currNode = currNode.next;
-            //}
-            int cnt = 0;
-            while (currNode != null)
+            int k = Size(head) / 2;
+            Node temp = head;
+            for (int i = 1; i < k; i++)
             {
-                if (cnt == size/2 - 1)
-                {
-                    currNode.next = currNode.next.next;
-                }
-                currNode = currNode.next;
+                temp = temp.next;
+            }
+            temp.next = temp.next.next;
+            return head;
+        }
+
+        public static Node KReverseLL(Node head, int k)
+        {
+            #region Input
+            /*
+                Node input = NodeHandler.GetEvenNoOfNodes();
+                NodeHandler.PrintNodes(input);
+                Node output = LinkedListProblems.KReverseLL(input, 3);
+                NodeHandler.PrintNodes(output);
+             */
+            #endregion
+            Node prev = null;
+            Node curr = head;
+            Node nxt = null;
+            int cnt = 0;
+            while (curr != null && cnt < k)
+            {
+                nxt = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = nxt;
                 cnt++;
             }
-
-            return head;
+            if (nxt != null)
+                head.next = KReverseLL(nxt, k);
+            return prev;
         }
 
         public static int MiddleElementOfNodes(Node head)
         {
+            #region
+            //Node input = NodeHandler.GetEvenNoOfNodes();
+            //NodeHandler.PrintNodes(input);
+            //int output = LinkedListProblems.MiddleElementOfNodes(input);
+            //Console.WriteLine("Middle Element of the List = {0}", output);
+            #endregion
+
             #region Approach 1
-            //int ans = -1;
-            //if (head == null) return ans;
+            //if (head == null) return -1;
             //else if (head.next == null) return head.data;
-            //int size = 1;
-            //Node temp = head;
-            //while (temp.next != null)
+            //int k = Size(head) / 2;
+            //for (int i = 1; i <= k; i++)
             //{
-            //    temp = temp.next;
-            //    size++;
+            //    head = head.next;
             //}
-            //temp = head;
-            //for (int i = 0; i < size / 2; i++)
-            //{
-            //    if (i == size / 2 - 1)
-            //    {
-            //        ans = temp.next.data;
-            //        break;
-            //    }
-            //    temp = temp.next;
-            //}
-            //return ans;
+            //return head.data;
             #endregion
 
             #region Approach 2
@@ -74,6 +82,20 @@
             }
             return slow.data;
             #endregion
+        }
+
+        public static Node ReverseList(Node head)
+        {
+            Node prev = null;
+            Node curr = head;
+            while (curr != null)
+            {
+                Node nxt = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = nxt;
+            }
+            return prev;
         }
 
         public static int Size(Node head) 

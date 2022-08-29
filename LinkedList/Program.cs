@@ -6,9 +6,10 @@
         {
             Console.WriteLine("Linked List Problems");
 
-            Node output = LinkedListProblems.DeleteMiddleNode(NodeHandler.GetEvenNoOfNodes());
-            Node output2 = LinkedListProblems.DeleteMiddleNode(NodeHandler.GetOddNoOfNodes());
-
+            Node input = NodeHandler.GetEvenNoOfNodes();
+            NodeHandler.PrintNodes(input);
+            int output = LinkedListProblems.MiddleElementOfNodes(input);
+            Console.WriteLine("Middle Element of the List = {0}", output);
         }
     }
 }
